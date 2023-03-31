@@ -1,28 +1,21 @@
 const express = require('express');
+require("dotenv").config();
 const app = express() 
 const db = require('./models')
+const bodyParser = require('body-parser')
 
-const users = require('./routes/route') 
-
-// app.set()
-app.use(express.json())
-
-// app.use('/', require('./routes/route'))
-// (async () => {
-//     await db.sequelize.sync()
-// })()
-db.sequelize.sync({force: true}).then(() => {
-    console.log('Sync db');
-})
+app.use(express.json(), bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+// Drop table
+// db.sequelize.sync({force: true}).then(() => {
+//     console.log('Sync db');
+// })
 app.get('/', [(req,res, next) => {
-    res.send('This is hme page')
+    res.send('This is home page')
 }])
-app.use((req, res, next) => {
-    console.log('This is global middleware');
-    next()
-})
+app.use('/', require('./routes/route'))
 
 const port = process.env.PORT;
 app.listen(port, () => {
-    console.log(`Server is running on port 8000`);
+    console.log(`Server is running on port ${port}`);
 })

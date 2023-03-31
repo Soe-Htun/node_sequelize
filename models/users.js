@@ -2,8 +2,10 @@
 
 module.exports = (sequelize, DataTypes) => {
     const Users = sequelize.define('users', {
-        username: DataTypes.STRING,
-        password: DataTypes.STRING
+        name: DataTypes.STRING,
+        gender: DataTypes.STRING,
+        email: DataTypes.STRING,
+        birthday: DataTypes.DATE
     }, 
     {
         freezeTableName: true
