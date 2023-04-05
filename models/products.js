@@ -1,15 +1,14 @@
 // const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-    const Users = sequelize.define('users', {
+    const Products = sequelize.define('products', {
         name: DataTypes.STRING,
-        email: DataTypes.STRING,
-        // birthday: DataTypes.DATE
-        password: DataTypes.STRING
+        price: DataTypes.DOUBLE,
+        quantity: DataTypes.INTEGER,
     }, 
     {
         freezeTableName: true
     });
 
-    return Users
+    return Products
 }

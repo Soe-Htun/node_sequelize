@@ -1,48 +1,37 @@
 const db = require('../models')
 const Users = db.Users;
-// const Op = db.sequelize.Op;
-
-// module.exports = {
-//     create: async (req, res) => {
-//         if(req.body.username  && req.body.email && req.body.password) {
-//             const { username, email, password } = req.body
-
-//             await Users.create({
-//                 username,
-//                 email,
-//                 password,
-//                 'created_at': new Date(),
-//                 'updated_at:' : new Date()
-//             })
-//         } else {
-//             res.send('Not added to the database!')
-//         }
-//     },
-
-//     findAll: async(req, res) => {
-//         const username = req.body.username
-//     }
-// }
-
-
 
 // create new User 
-exports.create = (req, res) => {
+// exports.create = (req, res) => {
 
-    const user = {
-        name: req.body.name,
-        gender: req.body.gender,
-        email: req.body.email,
-        birthday: req.body.birthday
-    }
-    Users.create(user).then(data => {
-        res.send(user)
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || 'Some error occurred while creating user'
-        })
-    })
-}
+//     Users.findOne({ where: {
+//         email: req.body.email
+//         }
+//     }).then(data => {
+//         if(data) {
+//             res.status(400).send({
+//                 message: 'Failed!! User already exist'
+//             })
+//             return;
+//         }
+
+//         const user = {
+//             name: req.body.name,
+//             gender: req.body.gender,
+//             email: req.body.email,
+//             birthday: req.body.birthday
+//         }
+//         Users.create(user).then(data => {
+//             res.send(user)
+//         }).catch(err => {
+//             res.status(500).send({
+//                 message: err.message || 'Some error occurred while creating user'
+//             })
+//         })
+
+//     })
+    
+// }
 
 // Retrieve all users from database
 exports.findAll = async (req, res) => {
@@ -106,14 +95,4 @@ exports.delete = (req, res) => {
             message: 'Could not delete user'
         })
     })
-}
-
-// Delete all users from daabase
-exports.deleteAll = (req, res) => {
-
-}
-
-// Find all published users
-exports.findAllPublished = (req,res) => {
-
 }

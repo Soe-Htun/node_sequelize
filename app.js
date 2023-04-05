@@ -7,6 +7,8 @@ const bodyParser = require('body-parser')
 app.use(express.json(), bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 // Drop table
+db.sequelize.sync();
+// force: true will drop table
 // db.sequelize.sync({force: true}).then(() => {
 //     console.log('Sync db');
 // })
